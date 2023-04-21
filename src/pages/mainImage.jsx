@@ -7,12 +7,34 @@ import { FiChevronRight } from 'react-icons/fi'
 import { AiOutlineHeart } from 'react-icons/ai'
 import { AiFillHeart } from 'react-icons/ai'
 import { AiOutlineShareAlt } from 'react-icons/ai'
+import { ImCopy } from 'react-icons/im'
+import { AiOutlineMail } from 'react-icons/ai'
+import { FiMessageSquare } from 'react-icons/fi'
+import { MdWhatsapp } from 'react-icons/md'
+import { RiMessengerLine } from 'react-icons/ri'
+import { SlSocialFacebook } from 'react-icons/sl'
+import { TfiTwitter } from 'react-icons/tfi'
+import { ImPinterest2 } from 'react-icons/im'
+import { ImEmbed2 } from 'react-icons/im'
 import { RxCross1 } from 'react-icons/rx'
+import Popup from 'reactjs-popup';
+import Card from '@/components/card';
+import { h1 } from 'fontawesome';
 
 const mainImage = () => {
     const router = useRouter();
-    const { id,q } = router.query;
+    const { id, q } = router.query;
     const [data, setData] = useState(apiData.listing);
+    const [isOpen, setIsOpen] = useState(false);
+    const [popupOpen, setPopupOpen] = useState(false);
+    const [whatsappClicked, setWhatsappClicked] = useState(false);
+    const [messengerClicked, setMessengerClicked] = useState(false);
+
+    const [url, setURL] = useState(`https://www.zimopro.com/${router.pathname}`);
+    const [copied, setCopied] = useState(false);
+    const [facebookClicked, setFacebookClicked] = useState(false);
+    const [twitterClicked, setTwitterClicked] = useState(false);
+    const [pinterestClicked, setPinterestClicked] = useState(false);
     const [index, setIndex] = useState(parseInt(q));
     const [isHeartFilled, setIsHeartFilled] = useState(false);
     const decryptedId = AES.decrypt(decodeURIComponent(id), '12345').toString(enc.Utf8);
@@ -21,10 +43,10 @@ const mainImage = () => {
     if (result) {
         imagesArray = result.details.images.split(',');
     }
-    
+
     useEffect(() => {
         setIndex(parseInt(q));
-    },[q])
+    }, [q])
 
     function handleHeartClick() {
         setIsHeartFilled(!isHeartFilled);
@@ -52,6 +74,40 @@ const mainImage = () => {
         router.push(`/details?id=${encodeURIComponent(id)}`)
     }
 
+
+    useEffect(() => {
+        if (whatsappClicked) {
+            window.open(`https://web.whatsapp.com/send?text=${url}`);
+            setWhatsappClicked(false);
+        }
+        if (messengerClicked) {
+            window.open(`https://www.facebook.com/dialog/send?link=${url}`, '_blank');
+            setMessengerClicked(false);
+        }
+        if (facebookClicked) {
+            window.open(`https://www.facebook.com/sharer.php?u=${url}`, '_blank');
+            setFacebookClicked(false);
+        }
+        if (twitterClicked) {
+            window.open(`https://twitter.com/share?url=${url}`, '_blank');
+            setTwitterClicked(false);
+        }
+        if (pinterestClicked) {
+            window.open(`https://pinterest.com/pin/create/button/?url=${url}`, '_blank');
+            setPinterestClicked(false);
+        }
+    }, [whatsappClicked, messengerClicked, facebookClicked, twitterClicked, pinterestClicked]);
+
+
+    function sendEmail() {
+        window.location = "mailto: ";
+    }
+
+    const copyToClipboard = () => {
+        navigator.clipboard.writeText(url);
+        setCopied(!copied);
+    }
+
     console.log(q);
 
     return (
@@ -70,7 +126,7 @@ const mainImage = () => {
                         <h1 className='text-2xl text-[#AFACAA]'>{index + 1} of {imagesArray.length}</h1>
                     </div>
                     <div className='flex z-10'>
-                        <div className='flex items-center cursor-pointer'>
+                        <div className='flex items-center cursor-pointer' onClick={() => setIsOpen(true)}>
                             <AiOutlineShareAlt className='text-3xl text-white mr-4' />
                             <h1 className='tracking-widest text-white text-xl ml-2 mr-2 md:hidden'>SHARE</h1>
                         </div>
@@ -114,6 +170,136 @@ const mainImage = () => {
                     </div>
                 </div>
             </div>
+            <Popup open={isOpen} onClose={() => setIsOpen(false)} modal>
+                <div className='flex items-center justify-center backdrop-blur-lg backdrop-filter'>
+                    <div className='bg-[#D2D2D0] rounded-xl'>
+                        <div className='flex items-center justify-between p-6'>
+                            <RxCross1 className='cursor-pointer' onClick={() => setIsOpen(false)} />
+                            <h1 className='uppercase tracking-widest font-light'>SHARE THIS property LISTING</h1>
+                            <img className='invert' src="/static/zimologo.svg" alt="" />
+                        </div>
+                        <hr className='text-[#BE9F56] border-1 border-[#BE9F56]' />
+                        <div className='m-3'>
+                            <h1 className='text-right uppercase text-xs tracking-widest font-light'>thank you for sharing</h1>
+                            <div className='flex items-center justify-between'>
+                                <img className='w-[100px] h-[100px] rounded-lg bg-cover bg-center' src={`${imagesArray[0]}`} alt="" />
+                                <h1 className='uppercase text-xs tracking-widest font-light'>london anik</h1>
+                            </div>
+                            <div className='flex flex-wrap items-center justify-between'>
+                                <div className='cursor-pointer m-3 w-[15%] flex flex-col items-center justify-center h-[125px]'>
+                                    <div className='rounded-xl w-full h-full m-1 border-[1px] border-[#B8B7B9] flex items-center justify-center'>
+                                        <ImCopy className='w-12 h-12' onClick={copyToClipboard} />
+                                    </div>
+                                    <h1 className='text-[10px]'>{copied ? 'COPIED' : 'COPY LINK'}</h1>
+                                </div>
+                                <div className='cursor-pointer m-3 w-[15%] flex flex-col items-center justify-center h-[125px]'>
+                                    <div className='rounded-xl w-full h-full m-1 border-[1px] border-[#B8B7B9] flex items-center justify-center'>
+                                        <AiOutlineMail className='w-12 h-12' onClick={sendEmail} />
+                                    </div>
+                                    <h1 className='text-[10px]'>EMAIL</h1>
+                                </div>
+                                <div className='cursor-pointer m-3 w-[15%] flex flex-col items-center justify-center h-[125px]'>
+                                    <div className='rounded-xl w-full h-full m-1 border-[1px] border-[#B8B7B9] flex items-center justify-center'>
+                                        <FiMessageSquare className='w-12 h-12' />
+                                    </div>
+                                    <h1 className='text-[10px]'>MESSAGES</h1>
+                                </div>
+                                <div className='cursor-pointer m-3 w-[15%] flex flex-col items-center justify-center h-[125px]'>
+                                    <div className='rounded-xl w-full h-full m-1 border-[1px] border-[#B8B7B9] flex items-center justify-center'>
+                                        <MdWhatsapp className='w-12 h-12' onClick={() => setWhatsappClicked(true)} />
+                                    </div>
+                                    <h1 className='text-[10px]'>WHATSAPP</h1>
+                                </div>
+                                <div className='cursor-pointer m-3 w-[15%] flex flex-col items-center justify-center h-[125px]'>
+                                    <div className='rounded-xl w-full h-full m-1 border-[1px] border-[#B8B7B9] flex items-center justify-center'>
+                                        <RiMessengerLine className='w-12 h-12' onClick={() => setMessengerClicked(true)} />
+                                    </div>
+                                    <h1 className='text-[10px]'>MESSENGER</h1>
+                                </div>
+                                <div className='cursor-pointer m-3 w-[15%] flex flex-col items-center justify-center h-[125px]'>
+                                    <div className='rounded-xl w-full h-full m-1 border-[1px] border-[#B8B7B9] flex items-center justify-center'>
+                                        <SlSocialFacebook className='w-12 h-12' onClick={() => setFacebookClicked(true)} />
+                                    </div>
+                                    <h1 className='text-[10px]'>FACEBOOK</h1>
+                                </div>
+                                <div className='cursor-pointer m-3 w-[15%] flex flex-col items-center justify-center h-[125px]'>
+                                    <div className='rounded-xl w-full h-full m-1 border-[1px] border-[#B8B7B9] flex items-center justify-center'>
+                                        <TfiTwitter className='w-12 h-12' onClick={() => setTwitterClicked(true)} />
+                                    </div>
+                                    <h1 className='text-[10px]'>TWITTER</h1>
+                                </div>
+                                <div className='cursor-pointer m-3 w-[15%] flex flex-col items-center justify-center h-[125px]'>
+                                    <div className='rounded-xl w-full h-full m-1 border-[1px] border-[#B8B7B9] flex items-center justify-center'>
+                                        <ImPinterest2 className='w-12 h-12' onClick={() => setPinterestClicked(true)} />
+                                    </div>
+                                    <h1 className='text-[10px]'>PINTERRST</h1>
+                                </div>
+                                <div className='cursor-pointer m-3 w-[15%] flex flex-col items-center justify-center h-[125px]'>
+                                    <div className='rounded-xl w-full h-full m-1 border-[1px] border-[#B8B7B9] flex items-center justify-center'>
+                                        <ImEmbed2 className='w-12 h-12' onClick={() => setPopupOpen(true)} />
+                                    </div>
+                                    <h1 className='text-[10px]'>EMBEDED</h1>
+                                </div>
+                                <div className='cursor-pointer m-3 w-[15%] flex flex-col items-center justify-center h-[125px]'>
+                                    <div className='rounded-xl w-fit p-2 h-fit m-1 border-[1px] border-[#B8B7B9] flex items-center justify-center'>
+                                        <img className='w-16 h-16' src="/static/qrocode.png" alt="" />
+                                    </div>
+                                    <h1 className='text-[10px]'>QR CODE</h1>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </Popup>
+            <Popup open={popupOpen} onClose={() => setPopupOpen(false)} modal>
+                <div className='w-[900px] bg-[#D2D2D0] h-full z-40 rounded-2xl'>
+                    <div className='flex items-center justify-between p-6'>
+                        <RxCross1 className='cursor-pointer' onClick={() => setPopupOpen(false)} />
+                        <h1 className='tracking-widest font-light'>EMBEDED THIS PROPERTY LISTING</h1>
+                        <img className='invert' src="/static/zimologo.svg" alt="" />
+                    </div>
+                    <hr className='text-[#BE9F56] border-1 border-[#BE9F56]' />
+                    <div className='p-6 flex justify-between'>
+                        <div className='w-1/2 mr-4'>
+                            <h1 className='mb-10 text-lg tracking-widest font-light'>PREVIEW</h1>
+                            <h1 className='mb-2 text-lg tracking-widest font-light'>COPY AND PASTE THE FOLLOWING HTML INTO YOUR WEBSITE CODE:</h1>
+                            <div className='p-4 rounded-2xl border-[1px] flex flex-wrap text-xs mb-9 font-light'>
+                                &lt;iframe src="https://zimopro.com/property?id=U2FsdGVkX19C2s3uIXYYiR3OWPcdvao78KKflD1TJ1g=" target="_blank" rel="noopener noreferrer"&gt;
+                                &lt;img src="https://zimopro.com/api/property/image/U2FsdGVkX19C2s3uIXYYiR3OWPcdvao78KKflD1TJ1g=" alt="property image"&gt;
+                                &lt;/iframe&gt;
+                            </div>
+                            <div className='flex items-end justify-between'>
+                                <button className='p-10 border-[1px] text-white bg-black rounded-xl mb-3' onClick={() => setCopied(!copied)}>
+                                    {copied ?
+                                        <h1>COPIED</h1> :
+                                        <>
+                                            <h1 className='font-light'>COPY</h1>
+                                            <h1 className='font-light'>HTML</h1>
+                                        </>
+                                    }
+                                </button>
+                                <div className='flex flex-col  items-center'>
+                                    <div className='rounded-xl w-fit p-2 h-fit m-1 border-[1px] border-[#B8B7B9] flex items-center justify-center'>
+                                        <img className='w-16 h-16' src="/static/qrocode.png" alt="" />
+                                    </div>
+                                    <h1 className='text-[10px]'>QR CODE</h1>
+                                </div>
+                            </div>
+                            <div className='flex items-center font-light tracking-widest'>
+                                <FiChevronLeft />
+                                BACK
+                            </div>
+                        </div>
+                        <div className='w-1/2'>
+                            <Card Info={result} />
+                            <div className='flex justify-between mt-10'>
+                                <h1 className='font-light tracking-widest'>VIEW PROPERTY LISTING</h1>
+                                <img className='invert' src="/static/zimologo.svg" alt="" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </Popup>
         </>
     )
 }
