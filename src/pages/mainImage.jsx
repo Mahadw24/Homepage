@@ -29,7 +29,6 @@ const mainImage = () => {
     const [popupOpen, setPopupOpen] = useState(false);
     const [whatsappClicked, setWhatsappClicked] = useState(false);
     const [messengerClicked, setMessengerClicked] = useState(false);
-
     const [url, setURL] = useState(`https://www.zimopro.com/${router.pathname}`);
     const [copied, setCopied] = useState(false);
     const [facebookClicked, setFacebookClicked] = useState(false);
@@ -110,6 +109,11 @@ const mainImage = () => {
 
     console.log(q);
 
+    const copyHTML = () => {
+        setCopied(!copied);
+        navigator.clipboard.writeText('<iframe src="https://zimopro.com/embedded/property?id=U2FsdGVkX18as38+YBdqu64b5pDyxZe/UzbTryCgh54=" height="450px" width="450px" style="margin: auto; display: block;" frameborder="0"></iframe>');
+    }
+
     return (
         <>
             <div className='w-screen photoview h-screen bg-center bg-cover flex flex-col justify-between' style={{ backgroundImage: `url(${imagesArray[index]})` }}>
@@ -170,9 +174,9 @@ const mainImage = () => {
                     </div>
                 </div>
             </div>
-            <Popup open={isOpen} onClose={() => setIsOpen(false)} modal>
-                <div className='flex items-center justify-center backdrop-blur-lg backdrop-filter'>
-                    <div className='bg-[#D2D2D0] rounded-xl'>
+            <Popup open={isOpen} onClose={() => setIsOpen(false)} closeOnDocumentClick={false} modal>
+                <div className='flex items-center justify-center  rounded-xl backdrop-blur-lg backdrop-filter'>
+                    <div className='rounded-2xl backdrop-blur-lg  backdrop-filter '>
                         <div className='flex items-center justify-between p-6'>
                             <RxCross1 className='cursor-pointer' onClick={() => setIsOpen(false)} />
                             <h1 className='uppercase tracking-widest font-light'>SHARE THIS property LISTING</h1>
@@ -180,67 +184,67 @@ const mainImage = () => {
                         </div>
                         <hr className='text-[#BE9F56] border-1 border-[#BE9F56]' />
                         <div className='m-3'>
-                            <h1 className='text-right uppercase text-xs tracking-widest font-light'>thank you for sharing</h1>
-                            <div className='flex items-center justify-between'>
+                            <h1 className='text-right uppercase text-xs tracking-widest font-light m-3'>thank you for sharing</h1>
+                            <div className='flex items-center justify-between m-3'>
                                 <img className='w-[100px] h-[100px] rounded-lg bg-cover bg-center' src={`${imagesArray[0]}`} alt="" />
                                 <h1 className='uppercase text-xs tracking-widest font-light'>london anik</h1>
                             </div>
                             <div className='flex flex-wrap items-center justify-between'>
-                                <div className='cursor-pointer m-3 w-[15%] flex flex-col items-center justify-center h-[125px]'>
+                                <div className='cursor-pointer m-3 w-[15%] flex flex-col items-center justify-center h-[115px]'>
                                     <div className='rounded-xl w-full h-full m-1 border-[1px] border-[#B8B7B9] flex items-center justify-center'>
                                         <ImCopy className='w-12 h-12' onClick={copyToClipboard} />
                                     </div>
                                     <h1 className='text-[10px]'>{copied ? 'COPIED' : 'COPY LINK'}</h1>
                                 </div>
-                                <div className='cursor-pointer m-3 w-[15%] flex flex-col items-center justify-center h-[125px]'>
+                                <div className='cursor-pointer m-3 w-[15%] flex flex-col items-center justify-center h-[115px]'>
                                     <div className='rounded-xl w-full h-full m-1 border-[1px] border-[#B8B7B9] flex items-center justify-center'>
                                         <AiOutlineMail className='w-12 h-12' onClick={sendEmail} />
                                     </div>
                                     <h1 className='text-[10px]'>EMAIL</h1>
                                 </div>
-                                <div className='cursor-pointer m-3 w-[15%] flex flex-col items-center justify-center h-[125px]'>
+                                <div className='cursor-pointer m-3 w-[15%] flex flex-col items-center justify-center h-[115px]'>
                                     <div className='rounded-xl w-full h-full m-1 border-[1px] border-[#B8B7B9] flex items-center justify-center'>
                                         <FiMessageSquare className='w-12 h-12' />
                                     </div>
                                     <h1 className='text-[10px]'>MESSAGES</h1>
                                 </div>
-                                <div className='cursor-pointer m-3 w-[15%] flex flex-col items-center justify-center h-[125px]'>
+                                <div className='cursor-pointer m-3 w-[15%] flex flex-col items-center justify-center h-[115px]'>
                                     <div className='rounded-xl w-full h-full m-1 border-[1px] border-[#B8B7B9] flex items-center justify-center'>
                                         <MdWhatsapp className='w-12 h-12' onClick={() => setWhatsappClicked(true)} />
                                     </div>
                                     <h1 className='text-[10px]'>WHATSAPP</h1>
                                 </div>
-                                <div className='cursor-pointer m-3 w-[15%] flex flex-col items-center justify-center h-[125px]'>
+                                <div className='cursor-pointer m-3 w-[15%] flex flex-col items-center justify-center h-[115px]'>
                                     <div className='rounded-xl w-full h-full m-1 border-[1px] border-[#B8B7B9] flex items-center justify-center'>
                                         <RiMessengerLine className='w-12 h-12' onClick={() => setMessengerClicked(true)} />
                                     </div>
                                     <h1 className='text-[10px]'>MESSENGER</h1>
                                 </div>
-                                <div className='cursor-pointer m-3 w-[15%] flex flex-col items-center justify-center h-[125px]'>
+                                <div className='cursor-pointer m-3 w-[15%] flex flex-col items-center justify-center h-[115px]'>
                                     <div className='rounded-xl w-full h-full m-1 border-[1px] border-[#B8B7B9] flex items-center justify-center'>
                                         <SlSocialFacebook className='w-12 h-12' onClick={() => setFacebookClicked(true)} />
                                     </div>
                                     <h1 className='text-[10px]'>FACEBOOK</h1>
                                 </div>
-                                <div className='cursor-pointer m-3 w-[15%] flex flex-col items-center justify-center h-[125px]'>
+                                <div className='cursor-pointer m-3 w-[15%] flex flex-col items-center justify-center h-[115px]'>
                                     <div className='rounded-xl w-full h-full m-1 border-[1px] border-[#B8B7B9] flex items-center justify-center'>
                                         <TfiTwitter className='w-12 h-12' onClick={() => setTwitterClicked(true)} />
                                     </div>
                                     <h1 className='text-[10px]'>TWITTER</h1>
                                 </div>
-                                <div className='cursor-pointer m-3 w-[15%] flex flex-col items-center justify-center h-[125px]'>
+                                <div className='cursor-pointer m-3 w-[15%] flex flex-col items-center justify-center h-[115px]'>
                                     <div className='rounded-xl w-full h-full m-1 border-[1px] border-[#B8B7B9] flex items-center justify-center'>
                                         <ImPinterest2 className='w-12 h-12' onClick={() => setPinterestClicked(true)} />
                                     </div>
                                     <h1 className='text-[10px]'>PINTERRST</h1>
                                 </div>
-                                <div className='cursor-pointer m-3 w-[15%] flex flex-col items-center justify-center h-[125px]'>
+                                <div className='cursor-pointer m-3 w-[15%] flex flex-col items-center justify-center h-[115px]'>
                                     <div className='rounded-xl w-full h-full m-1 border-[1px] border-[#B8B7B9] flex items-center justify-center'>
                                         <ImEmbed2 className='w-12 h-12' onClick={() => setPopupOpen(true)} />
                                     </div>
                                     <h1 className='text-[10px]'>EMBEDED</h1>
                                 </div>
-                                <div className='cursor-pointer m-3 w-[15%] flex flex-col items-center justify-center h-[125px]'>
+                                <div className='cursor-pointer m-3 w-[15%] flex flex-col items-center justify-center h-[115px]'>
                                     <div className='rounded-xl w-fit p-2 h-fit m-1 border-[1px] border-[#B8B7B9] flex items-center justify-center'>
                                         <img className='w-16 h-16' src="/static/qrocode.png" alt="" />
                                     </div>
@@ -251,8 +255,8 @@ const mainImage = () => {
                     </div>
                 </div>
             </Popup>
-            <Popup open={popupOpen} onClose={() => setPopupOpen(false)} modal>
-                <div className='w-[900px] bg-[#D2D2D0] h-full z-40 rounded-2xl'>
+            <Popup open={popupOpen} onClose={() => setPopupOpen(false)} closeOnDocumentClick={false} modal>
+                <div className='w-[900px] backdrop-blur-lg  backdrop-filter h-full z-40 rounded-2xl -ml-20'>
                     <div className='flex items-center justify-between p-6'>
                         <RxCross1 className='cursor-pointer' onClick={() => setPopupOpen(false)} />
                         <h1 className='tracking-widest font-light'>EMBEDED THIS PROPERTY LISTING</h1>
@@ -264,14 +268,13 @@ const mainImage = () => {
                             <h1 className='mb-10 text-lg tracking-widest font-light'>PREVIEW</h1>
                             <h1 className='mb-2 text-lg tracking-widest font-light'>COPY AND PASTE THE FOLLOWING HTML INTO YOUR WEBSITE CODE:</h1>
                             <div className='p-4 rounded-2xl border-[1px] flex flex-wrap text-xs mb-9 font-light'>
-                                &lt;iframe src="https://zimopro.com/property?id=U2FsdGVkX19C2s3uIXYYiR3OWPcdvao78KKflD1TJ1g=" target="_blank" rel="noopener noreferrer"&gt;
-                                &lt;img src="https://zimopro.com/api/property/image/U2FsdGVkX19C2s3uIXYYiR3OWPcdvao78KKflD1TJ1g=" alt="property image"&gt;
+                                &lt;iframe src="https://zimopro.com/embedded/property?id=U2FsdGVkX18as38+YBdqu64b5pDyxZe/UzbTryCgh54=" height="450px" width="450px" style="margin: auto; display: block;" frameborder="0"&gt;
                                 &lt;/iframe&gt;
                             </div>
                             <div className='flex items-end justify-between'>
-                                <button className='p-10 border-[1px] text-white bg-black rounded-xl mb-3' onClick={() => setCopied(!copied)}>
+                                <button className='p-10 text-white bg-black rounded-xl mb-3' onClick={copyHTML}>
                                     {copied ?
-                                        <h1>COPIED</h1> :
+                                        <h1 className='font-light'>COPIED</h1> :
                                         <>
                                             <h1 className='font-light'>COPY</h1>
                                             <h1 className='font-light'>HTML</h1>
@@ -285,7 +288,7 @@ const mainImage = () => {
                                     <h1 className='text-[10px]'>QR CODE</h1>
                                 </div>
                             </div>
-                            <div className='flex items-center font-light tracking-widest'>
+                            <div className='flex items-center font-light tracking-widest cursor-pointer' onClick={() => setPopupOpen(false)}>
                                 <FiChevronLeft />
                                 BACK
                             </div>
