@@ -29,7 +29,7 @@ const mainImage = () => {
     const [popupOpen, setPopupOpen] = useState(false);
     const [whatsappClicked, setWhatsappClicked] = useState(false);
     const [messengerClicked, setMessengerClicked] = useState(false);
-    const [url, setURL] = useState(`https://www.zimopro.com/${router.pathname}`);
+    const [url, setURL] = useState(`https://localhost:/${router.pathname}`);
     const [copied, setCopied] = useState(false);
     const [facebookClicked, setFacebookClicked] = useState(false);
     const [twitterClicked, setTwitterClicked] = useState(false);
@@ -103,7 +103,7 @@ const mainImage = () => {
     }
 
     const copyToClipboard = () => {
-        navigator.clipboard.writeText(url);
+        navigator.clipboard.writeText(window.location.href);
         setCopied(!copied);
     }
 
