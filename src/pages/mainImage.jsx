@@ -18,8 +18,8 @@ import { ImPinterest2 } from 'react-icons/im'
 import { ImEmbed2 } from 'react-icons/im'
 import { RxCross1 } from 'react-icons/rx'
 import Popup from 'reactjs-popup';
+import { QRCodeSVG } from 'qrcode.react';
 import Card from '@/components/card';
-import { h1 } from 'fontawesome';
 
 const mainImage = () => {
     const router = useRouter();
@@ -107,12 +107,12 @@ const mainImage = () => {
         setCopied(!copied);
     }
 
-    console.log(q);
-
     const copyHTML = () => {
         setCopied(!copied);
         navigator.clipboard.writeText('<iframe src="https://zimopro.com/embedded/property?id=U2FsdGVkX18as38+YBdqu64b5pDyxZe/UzbTryCgh54=" height="450px" width="450px" style="margin: auto; display: block;" frameborder="0"></iframe>');
     }
+
+    console.log(result);
 
     return (
         <>
@@ -144,7 +144,7 @@ const mainImage = () => {
                         </div>
                     </div>
                 </div>
-                <div className='z-10 flex justify-between p-6 text-[#AFACAA] cursor-pointer mx-14'>
+                <div className='z-10 flex justify-between p-6  text-[#AFACAA] cursor-pointer sm:mx-0 mx-14'>
                     <FiChevronLeft className=' w-14 h-14' onClick={() => prevImage()} />
                     <FiChevronRight className='h-14 w-14' onClick={() => nextImage()} />
                 </div>
@@ -175,11 +175,11 @@ const mainImage = () => {
                 </div>
             </div>
             <Popup open={isOpen} onClose={() => setIsOpen(false)} closeOnDocumentClick={false} modal>
-                <div className='flex items-center justify-center  rounded-xl backdrop-blur-lg backdrop-filter'>
+                <div className='flex items-center justify-center  rounded-xl backdrop-blur-lg backdrop-filter sm:m-4'>
                     <div className='rounded-2xl backdrop-blur-lg  backdrop-filter '>
                         <div className='flex items-center justify-between p-6'>
                             <RxCross1 className='cursor-pointer' onClick={() => setIsOpen(false)} />
-                            <h1 className='uppercase tracking-widest font-light'>SHARE THIS property LISTING</h1>
+                            <h1 className='uppercase tracking-widest font-light sm:hidden'>SHARE THIS property LISTING</h1>
                             <img className='invert' src="/static/zimologo.svg" alt="" />
                         </div>
                         <hr className='text-[#BE9F56] border-1 border-[#BE9F56]' />
@@ -190,63 +190,67 @@ const mainImage = () => {
                                 <h1 className='uppercase text-xs tracking-widest font-light'>london anik</h1>
                             </div>
                             <div className='flex flex-wrap items-center justify-between'>
-                                <div className='cursor-pointer m-3 w-[15%] flex flex-col items-center justify-center h-[115px]'>
+                                <div className='cursor-pointer m-3 sm:m-1  w-[15%] flex flex-col items-center justify-center h-[115px] sm:w-[30%] max-w-[100px]'>
                                     <div className='rounded-xl w-full h-full m-1 border-[1px] border-[#B8B7B9] flex items-center justify-center'>
                                         <ImCopy className='w-12 h-12' onClick={copyToClipboard} />
                                     </div>
                                     <h1 className='text-[10px]'>{copied ? 'COPIED' : 'COPY LINK'}</h1>
                                 </div>
-                                <div className='cursor-pointer m-3 w-[15%] flex flex-col items-center justify-center h-[115px]'>
+                                <div className='cursor-pointer m-3 sm:m-1  w-[15%] flex flex-col items-center justify-center h-[115px] sm:w-[30%] max-w-[100px]'>
                                     <div className='rounded-xl w-full h-full m-1 border-[1px] border-[#B8B7B9] flex items-center justify-center'>
                                         <AiOutlineMail className='w-12 h-12' onClick={sendEmail} />
                                     </div>
                                     <h1 className='text-[10px]'>EMAIL</h1>
                                 </div>
-                                <div className='cursor-pointer m-3 w-[15%] flex flex-col items-center justify-center h-[115px]'>
-                                    <div className='rounded-xl w-full h-full m-1 border-[1px] border-[#B8B7B9] flex items-center justify-center'>
+                                <div className='cursor-pointer m-3 sm:m-1  w-[15%] flex flex-col items-center justify-center h-[115px] sm:w-[30%] max-w-[100px]'>
+                                    <div className='rounded-xl w-full h-full m-1 border-[1px] border-[#B8B7B9] flex items-center justify-center '>
                                         <FiMessageSquare className='w-12 h-12' />
                                     </div>
                                     <h1 className='text-[10px]'>MESSAGES</h1>
                                 </div>
-                                <div className='cursor-pointer m-3 w-[15%] flex flex-col items-center justify-center h-[115px]'>
+                                <div className='cursor-pointer m-3 sm:m-1  w-[15%] flex flex-col items-center justify-center h-[115px] sm:w-[30%] max-w-[100px]'>
                                     <div className='rounded-xl w-full h-full m-1 border-[1px] border-[#B8B7B9] flex items-center justify-center'>
                                         <MdWhatsapp className='w-12 h-12' onClick={() => setWhatsappClicked(true)} />
                                     </div>
                                     <h1 className='text-[10px]'>WHATSAPP</h1>
                                 </div>
-                                <div className='cursor-pointer m-3 w-[15%] flex flex-col items-center justify-center h-[115px]'>
+                                <div className='cursor-pointer m-3 sm:m-1  w-[15%] flex flex-col items-center justify-center h-[115px] sm:w-[30%] max-w-[100px]'>
                                     <div className='rounded-xl w-full h-full m-1 border-[1px] border-[#B8B7B9] flex items-center justify-center'>
                                         <RiMessengerLine className='w-12 h-12' onClick={() => setMessengerClicked(true)} />
                                     </div>
                                     <h1 className='text-[10px]'>MESSENGER</h1>
                                 </div>
-                                <div className='cursor-pointer m-3 w-[15%] flex flex-col items-center justify-center h-[115px]'>
+                                <div className='cursor-pointer m-3 sm:m-1  w-[15%] flex flex-col items-center justify-center h-[115px] sm:w-[30%] max-w-[100px]'>
                                     <div className='rounded-xl w-full h-full m-1 border-[1px] border-[#B8B7B9] flex items-center justify-center'>
                                         <SlSocialFacebook className='w-12 h-12' onClick={() => setFacebookClicked(true)} />
                                     </div>
                                     <h1 className='text-[10px]'>FACEBOOK</h1>
                                 </div>
-                                <div className='cursor-pointer m-3 w-[15%] flex flex-col items-center justify-center h-[115px]'>
+                                <div className='cursor-pointer m-3 sm:m-1  w-[15%] flex flex-col items-center justify-center h-[115px] sm:w-[30%] max-w-[100px]'>
                                     <div className='rounded-xl w-full h-full m-1 border-[1px] border-[#B8B7B9] flex items-center justify-center'>
                                         <TfiTwitter className='w-12 h-12' onClick={() => setTwitterClicked(true)} />
                                     </div>
                                     <h1 className='text-[10px]'>TWITTER</h1>
                                 </div>
-                                <div className='cursor-pointer m-3 w-[15%] flex flex-col items-center justify-center h-[115px]'>
+                                <div className='cursor-pointer m-3 sm:m-1  w-[15%] flex flex-col items-center justify-center h-[115px] sm:w-[30%] max-w-[100px]'>
                                     <div className='rounded-xl w-full h-full m-1 border-[1px] border-[#B8B7B9] flex items-center justify-center'>
                                         <ImPinterest2 className='w-12 h-12' onClick={() => setPinterestClicked(true)} />
                                     </div>
                                     <h1 className='text-[10px]'>PINTERRST</h1>
                                 </div>
-                                <div className='cursor-pointer m-3 w-[15%] flex flex-col items-center justify-center h-[115px]'>
+                                <div className='cursor-pointer m-3 sm:m-1  w-[15%] flex flex-col items-center justify-center h-[115px] sm:w-[30%] max-w-[100px]'>
                                     <div className='rounded-xl w-full h-full m-1 border-[1px] border-[#B8B7B9] flex items-center justify-center'>
                                         <ImEmbed2 className='w-12 h-12' onClick={() => setPopupOpen(true)} />
                                     </div>
                                     <h1 className='text-[10px]'>EMBEDED</h1>
                                 </div>
-                                <div className='cursor-pointer m-3 w-[15%] flex flex-col items-center justify-center h-[115px]'>
+                                <div className='cursor-pointer m-3 sm:m-1  w-[15%] flex flex-col items-center justify-center h-[115px] sm:w-[30%] max-w-[100px]'>
                                     <div className='rounded-xl w-fit p-2 h-fit m-1 border-[1px] border-[#B8B7B9] flex items-center justify-center'>
-                                        <img className='w-16 h-16' src="/static/qrocode.png" alt="" />
+                                        {result ?
+                                            <QRCodeSVG className='w-16 h-16' value={`${result.price}${result.currency}`} />
+                                            :
+                                            " "
+                                        }
                                     </div>
                                     <h1 className='text-[10px]'>QR CODE</h1>
                                 </div>
@@ -256,18 +260,18 @@ const mainImage = () => {
                 </div>
             </Popup>
             <Popup open={popupOpen} onClose={() => setPopupOpen(false)} closeOnDocumentClick={false} modal>
-                <div className='w-[900px] backdrop-blur-lg  backdrop-filter h-full z-40 rounded-2xl -ml-20'>
+                <div className='w-[900px] sm:w-fit sm:m-4 backdrop-blur-lg  backdrop-filter z-40 rounded-2xl  -ml-20'>
                     <div className='flex items-center justify-between p-6'>
                         <RxCross1 className='cursor-pointer' onClick={() => setPopupOpen(false)} />
-                        <h1 className='tracking-widest font-light'>EMBEDED THIS PROPERTY LISTING</h1>
+                        <h1 className='tracking-widest font-light sm:hidden'>EMBEDED THIS PROPERTY LISTING</h1>
                         <img className='invert' src="/static/zimologo.svg" alt="" />
                     </div>
                     <hr className='text-[#BE9F56] border-1 border-[#BE9F56]' />
                     <div className='p-6 flex justify-between'>
-                        <div className='w-1/2 mr-4'>
+                        <div className='w-1/2 sm:w-full md:w-full -sm:mr-4 mr-4'>
                             <h1 className='mb-10 text-lg tracking-widest font-light'>PREVIEW</h1>
                             <h1 className='mb-2 text-lg tracking-widest font-light'>COPY AND PASTE THE FOLLOWING HTML INTO YOUR WEBSITE CODE:</h1>
-                            <div className='p-4 rounded-2xl border-[1px] flex flex-wrap text-xs mb-9 font-light'>
+                            <div className='p-4 rounded-2xl border-[1px] flex flex-wrap text-xs mb-9 w-full font-light'>
                                 &lt;iframe src="https://zimopro.com/embedded/property?id=U2FsdGVkX18as38+YBdqu64b5pDyxZe/UzbTryCgh54=" height="450px" width="450px" style="margin: auto; display: block;" frameborder="0"&gt;
                                 &lt;/iframe&gt;
                             </div>
@@ -283,7 +287,11 @@ const mainImage = () => {
                                 </button>
                                 <div className='flex flex-col  items-center'>
                                     <div className='rounded-xl w-fit p-2 h-fit m-1 border-[1px] border-[#B8B7B9] flex items-center justify-center'>
-                                        <img className='w-16 h-16' src="/static/qrocode.png" alt="" />
+                                        {result ?
+                                            <QRCodeSVG className='w-16 h-16' value={`${result.price}${result.currency}`} />
+                                            :
+                                            " "
+                                        }
                                     </div>
                                     <h1 className='text-[10px]'>QR CODE</h1>
                                 </div>
@@ -293,7 +301,7 @@ const mainImage = () => {
                                 BACK
                             </div>
                         </div>
-                        <div className='w-1/2'>
+                        <div className='w-1/2 sm:hidden md:hidden'>
                             <Card Info={result} />
                             <div className='flex justify-between mt-10'>
                                 <h1 className='font-light tracking-widest'>VIEW PROPERTY LISTING</h1>
