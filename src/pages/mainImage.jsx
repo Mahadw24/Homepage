@@ -192,61 +192,61 @@ const mainImage = () => {
                             </div>
                             <div className='flex flex-wrap items-center justify-between'>
                                 <div className='cursor-pointer m-3 sm:m-1  w-[15%] flex flex-col items-center justify-center h-[115px] sm:w-[30%] max-w-[100px]'>
-                                    <div className='rounded-xl w-full h-full m-1 border-[1px] border-[#B8B7B9] flex items-center justify-center'>
+                                    <div className='rounded-xl w-full h-full m-1 border-[1px] border-[#737273] flex items-center justify-center'>
                                         <img className='w-14 h-14' src="/static/copy.png" onClick={copyToClipboard} alt="" />
                                     </div>
                                     <h1 className='text-[10px]'>{copied ? 'COPIED' : 'COPY LINK'}</h1>
                                 </div>
                                 <div className='cursor-pointer m-3 sm:m-1  w-[15%] flex flex-col items-center justify-center h-[115px] sm:w-[30%] max-w-[100px]'>
-                                    <div className='rounded-xl w-full h-full m-1 border-[1px] border-[#B8B7B9] flex items-center justify-center'>
+                                    <div className='rounded-xl w-full h-full m-1 border-[1px] border-[#737273] flex items-center justify-center'>
                                         <img className='w-14 h-14' src="/static/email.svg" onClick={sendEmail} alt="" />
                                     </div>
                                     <h1 className='text-[10px]'>EMAIL</h1>
                                 </div>
                                 <div className='cursor-pointer m-3 sm:m-1  w-[15%] flex flex-col items-center justify-center h-[115px] sm:w-[30%] max-w-[100px]'>
-                                    <div className='rounded-xl w-full h-full m-1 border-[1px] border-[#B8B7B9] flex items-center justify-center '>
+                                    <div className='rounded-xl w-full h-full m-1 border-[1px] border-[#737273] flex items-center justify-center '>
                                         <img className='w-14 h-14' src="/static/message.png" alt="" />
                                     </div>
                                     <h1 className='text-[10px]'>MESSAGES</h1>
                                 </div>
                                 <div className='cursor-pointer m-3 sm:m-1  w-[15%] flex flex-col items-center justify-center h-[115px] sm:w-[30%] max-w-[100px]'>
-                                    <div className='rounded-xl w-full h-full m-1 border-[1px] border-[#B8B7B9] flex items-center justify-center'>
+                                    <div className='rounded-xl w-full h-full m-1 border-[1px] border-[#737273] flex items-center justify-center'>
                                         <img className='w-14 h-14' src="/static/whatsapp.svg" onClick={() => setWhatsappClicked(true)} alt="" />
                                     </div>
                                     <h1 className='text-[10px]'>WHATSAPP</h1>
                                 </div>
                                 <div className='cursor-pointer m-3 sm:m-1  w-[15%] flex flex-col items-center justify-center h-[115px] sm:w-[30%] max-w-[100px]'>
-                                    <div className='rounded-xl w-full h-full m-1 border-[1px] border-[#B8B7B9] flex items-center justify-center'>
+                                    <div className='rounded-xl w-full h-full m-1 border-[1px] border-[#737273] flex items-center justify-center'>
                                         <img className='w-14 h-14' src="/static/messenger.svg" onClick={() => setMessengerClicked(true)} alt="" />
                                     </div>
                                     <h1 className='text-[10px]'>MESSENGER</h1>
                                 </div>
                                 <div className='cursor-pointer m-3 sm:m-1  w-[15%] flex flex-col items-center justify-center h-[115px] sm:w-[30%] max-w-[100px]'>
-                                    <div className='rounded-xl w-full h-full m-1 border-[1px] border-[#B8B7B9] flex items-center justify-center'>
+                                    <div className='rounded-xl w-full h-full m-1 border-[1px] border-[#737273] flex items-center justify-center'>
                                         <img className='w-14 h-14' src="/static/facebook.svg" onClick={() => setFacebookClicked(true)} alt="" />
                                     </div>
                                     <h1 className='text-[10px]'>FACEBOOK</h1>
                                 </div>
                                 <div className='cursor-pointer m-3 sm:m-1  w-[15%] flex flex-col items-center justify-center h-[115px] sm:w-[30%] max-w-[100px]'>
-                                    <div className='rounded-xl w-full h-full m-1 border-[1px] border-[#B8B7B9] flex items-center justify-center'>
+                                    <div className='rounded-xl w-full h-full m-1 border-[1px] border-[#737273] flex items-center justify-center'>
                                         <img className='w-14 h-14' src="/static/twitter.svg" onClick={() => setTwitterClicked(true)} alt="" />
                                     </div>
                                     <h1 className='text-[10px]'>TWITTER</h1>
                                 </div>
                                 <div className='cursor-pointer m-3 sm:m-1  w-[15%] flex flex-col items-center justify-center h-[115px] sm:w-[30%] max-w-[100px]'>
-                                    <div className='rounded-xl w-full h-full m-1 border-[1px] border-[#B8B7B9] flex items-center justify-center'>
+                                    <div className='rounded-xl w-full h-full m-1 border-[1px] border-[#737273] flex items-center justify-center'>
                                         <img className='w-14 h-14' src="/static/pinterest.svg" onClick={() => setPinterestClicked(true)} alt="" />
                                     </div>
                                     <h1 className='text-[10px]'>PINTERRST</h1>
                                 </div>
                                 <div className='cursor-pointer m-3 sm:m-1  w-[15%] flex flex-col items-center justify-center h-[115px] sm:w-[30%] max-w-[100px]'>
-                                    <div className='rounded-xl w-full h-full m-1 border-[1px] border-[#B8B7B9] flex items-center justify-center'>
+                                    <div className='rounded-xl w-full h-full m-1 border-[1px] border-[#737273] flex items-center justify-center'>
                                         <img className='w-14 h-14' src="/static/embeded.svg" onClick={() => setPopupOpen(true)} alt="" />
                                     </div>
                                     <h1 className='text-[10px]'>EMBEDED</h1>
                                 </div>
                                 <div className='cursor-pointer m-3 sm:m-1  w-[15%] flex flex-col items-center justify-center h-[115px] sm:w-[30%] max-w-[100px]'>
-                                    <div className='rounded-xl w-fit p-2 h-fit m-1 border-[1px] border-[#B8B7B9] flex items-center justify-center'>
+                                    <div className='rounded-xl w-fit p-2 h-fit m-1 border-[1px] border-[#737273] flex items-center justify-center'>
                                         {result ?
                                             <QRCodeSVG className='w-16 h-16' value={`${result.price}${result.currency}`} />
                                             :
@@ -273,7 +273,7 @@ const mainImage = () => {
                         <div className='w-1/2 sm:w-full md:w-full -sm:mr-4 mr-4'>
                             <h1 className='mb-10 text-lg tracking-widest font-light'>PREVIEW</h1>
                             <h1 className='mb-2 text-lg tracking-widest font-light'>COPY AND PASTE THE FOLLOWING HTML INTO YOUR WEBSITE CODE:</h1>
-                            <div className='p-4 rounded-2xl border-[1px] flex flex-wrap text-xs mb-9 w-full font-light'>
+                            <div className='p-4 rounded-2xl border-[1px] border-[#737273] flex flex-wrap text-xs mb-9 w-full font-light'>
                                 &lt;iframe src="https://zimopro.com/embedded/property?id=U2FsdGVkX18as38+YBdqu64b5pDyxZe/UzbTryCgh54=" height="450px" width="450px" style="margin: auto; display: block;" frameborder="0"&gt;
                                 &lt;/iframe&gt;
                             </div>
