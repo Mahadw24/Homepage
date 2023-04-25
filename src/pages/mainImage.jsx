@@ -175,7 +175,8 @@ const mainImage = () => {
                 </div>
             </div>
             <Popup open={isOpen} onClose={() => setIsOpen(false)} closeOnDocumentClick={false} modal>
-                <div className='flex items-center justify-center  rounded-xl backdrop-blur-lg backdrop-filter sm:m-4'>
+                <div className='flex items-center justify-center bg-white/50 rounded-xl backdrop-blur-lg backdrop-filter sm:m-4'>
+                {/* <div className='flex items-center justify-center  rounded-xl bg-white sm:m-4'> */}
                     <div className='rounded-2xl backdrop-blur-lg  backdrop-filter '>
                         <div className='flex items-center justify-between p-6'>
                             <RxCross1 className='cursor-pointer' onClick={() => setIsOpen(false)} />
@@ -192,55 +193,55 @@ const mainImage = () => {
                             <div className='flex flex-wrap items-center justify-between'>
                                 <div className='cursor-pointer m-3 sm:m-1  w-[15%] flex flex-col items-center justify-center h-[115px] sm:w-[30%] max-w-[100px]'>
                                     <div className='rounded-xl w-full h-full m-1 border-[1px] border-[#B8B7B9] flex items-center justify-center'>
-                                        <ImCopy className='w-12 h-12' onClick={copyToClipboard} />
+                                        <img className='w-14 h-14' src="/static/copy.png" onClick={copyToClipboard} alt="" />
                                     </div>
                                     <h1 className='text-[10px]'>{copied ? 'COPIED' : 'COPY LINK'}</h1>
                                 </div>
                                 <div className='cursor-pointer m-3 sm:m-1  w-[15%] flex flex-col items-center justify-center h-[115px] sm:w-[30%] max-w-[100px]'>
                                     <div className='rounded-xl w-full h-full m-1 border-[1px] border-[#B8B7B9] flex items-center justify-center'>
-                                        <AiOutlineMail className='w-12 h-12' onClick={sendEmail} />
+                                        <img className='w-14 h-14' src="/static/email.svg" onClick={sendEmail} alt="" />
                                     </div>
                                     <h1 className='text-[10px]'>EMAIL</h1>
                                 </div>
                                 <div className='cursor-pointer m-3 sm:m-1  w-[15%] flex flex-col items-center justify-center h-[115px] sm:w-[30%] max-w-[100px]'>
                                     <div className='rounded-xl w-full h-full m-1 border-[1px] border-[#B8B7B9] flex items-center justify-center '>
-                                        <FiMessageSquare className='w-12 h-12' />
+                                        <img className='w-14 h-14' src="/static/message.png" alt="" />
                                     </div>
                                     <h1 className='text-[10px]'>MESSAGES</h1>
                                 </div>
                                 <div className='cursor-pointer m-3 sm:m-1  w-[15%] flex flex-col items-center justify-center h-[115px] sm:w-[30%] max-w-[100px]'>
                                     <div className='rounded-xl w-full h-full m-1 border-[1px] border-[#B8B7B9] flex items-center justify-center'>
-                                        <MdWhatsapp className='w-12 h-12' onClick={() => setWhatsappClicked(true)} />
+                                        <img className='w-14 h-14' src="/static/whatsapp.svg" onClick={() => setWhatsappClicked(true)} alt="" />
                                     </div>
                                     <h1 className='text-[10px]'>WHATSAPP</h1>
                                 </div>
                                 <div className='cursor-pointer m-3 sm:m-1  w-[15%] flex flex-col items-center justify-center h-[115px] sm:w-[30%] max-w-[100px]'>
                                     <div className='rounded-xl w-full h-full m-1 border-[1px] border-[#B8B7B9] flex items-center justify-center'>
-                                        <RiMessengerLine className='w-12 h-12' onClick={() => setMessengerClicked(true)} />
+                                        <img className='w-14 h-14' src="/static/messenger.svg" onClick={() => setMessengerClicked(true)} alt="" />
                                     </div>
                                     <h1 className='text-[10px]'>MESSENGER</h1>
                                 </div>
                                 <div className='cursor-pointer m-3 sm:m-1  w-[15%] flex flex-col items-center justify-center h-[115px] sm:w-[30%] max-w-[100px]'>
                                     <div className='rounded-xl w-full h-full m-1 border-[1px] border-[#B8B7B9] flex items-center justify-center'>
-                                        <SlSocialFacebook className='w-12 h-12' onClick={() => setFacebookClicked(true)} />
+                                        <img className='w-14 h-14' src="/static/facebook.svg" onClick={() => setFacebookClicked(true)} alt="" />
                                     </div>
                                     <h1 className='text-[10px]'>FACEBOOK</h1>
                                 </div>
                                 <div className='cursor-pointer m-3 sm:m-1  w-[15%] flex flex-col items-center justify-center h-[115px] sm:w-[30%] max-w-[100px]'>
                                     <div className='rounded-xl w-full h-full m-1 border-[1px] border-[#B8B7B9] flex items-center justify-center'>
-                                        <TfiTwitter className='w-12 h-12' onClick={() => setTwitterClicked(true)} />
+                                        <img className='w-14 h-14' src="/static/twitter.svg" onClick={() => setTwitterClicked(true)} alt="" />
                                     </div>
                                     <h1 className='text-[10px]'>TWITTER</h1>
                                 </div>
                                 <div className='cursor-pointer m-3 sm:m-1  w-[15%] flex flex-col items-center justify-center h-[115px] sm:w-[30%] max-w-[100px]'>
                                     <div className='rounded-xl w-full h-full m-1 border-[1px] border-[#B8B7B9] flex items-center justify-center'>
-                                        <ImPinterest2 className='w-12 h-12' onClick={() => setPinterestClicked(true)} />
+                                        <img className='w-14 h-14' src="/static/pinterest.svg" onClick={() => setPinterestClicked(true)} alt="" />
                                     </div>
                                     <h1 className='text-[10px]'>PINTERRST</h1>
                                 </div>
                                 <div className='cursor-pointer m-3 sm:m-1  w-[15%] flex flex-col items-center justify-center h-[115px] sm:w-[30%] max-w-[100px]'>
                                     <div className='rounded-xl w-full h-full m-1 border-[1px] border-[#B8B7B9] flex items-center justify-center'>
-                                        <ImEmbed2 className='w-12 h-12' onClick={() => setPopupOpen(true)} />
+                                        <img className='w-14 h-14' src="/static/embeded.svg" onClick={() => setPopupOpen(true)} alt="" />
                                     </div>
                                     <h1 className='text-[10px]'>EMBEDED</h1>
                                 </div>
@@ -260,7 +261,8 @@ const mainImage = () => {
                 </div>
             </Popup>
             <Popup open={popupOpen} onClose={() => setPopupOpen(false)} closeOnDocumentClick={false} modal>
-                <div className='w-[900px] sm:w-fit sm:m-4 backdrop-blur-lg  backdrop-filter z-40 rounded-2xl  -ml-20'>
+                <div className='w-[900px] sm:w-fit sm:m-4 bg-white/50 backdrop-blur-lg  backdrop-filter z-40 rounded-2xl  -ml-20'>
+                {/* <div className='w-[900px] sm:w-fit sm:m-4 bg-white z-40 rounded-2xl  -ml-20'> */}
                     <div className='flex items-center justify-between p-6'>
                         <RxCross1 className='cursor-pointer' onClick={() => setPopupOpen(false)} />
                         <h1 className='tracking-widest font-light sm:hidden'>EMBEDED THIS PROPERTY LISTING</h1>
