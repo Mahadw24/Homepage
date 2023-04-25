@@ -239,7 +239,7 @@ const mainImage = () => {
                                 <div className='cursor-pointer m-3 sm:m-1  w-[15%] flex flex-col items-center justify-center h-[115px] sm:w-[30%] max-w-[100px]'>
                                     <div className='rounded-xl w-fit p-2 h-fit m-1 border-[1px] border-[#737273] flex items-center justify-center'>
                                         {result ?
-                                            <QRCodeSVG className='w-16 h-16' value={`${result.price}${result.currency}`} />
+                                            <QRCodeSVG className='w-16 h-16 bg-transparent' bgColor='transparent' value={`${result.price}${result.currency}`} />
                                             :
                                             " "
                                         }
@@ -281,7 +281,7 @@ const mainImage = () => {
                                 <div className='flex flex-col  items-center'>
                                     <div className='rounded-xl w-fit p-2 h-fit m-1 border-[1px] border-[#B8B7B9] flex items-center justify-center'>
                                         {result ?
-                                            <QRCodeSVG className='w-16 h-16' value={`${result.price}${result.currency}`} />
+                                            <QRCodeSVG className='w-16 h-16' bgColor='transparent' value={`${result.price}${result.currency}`} />
                                             :
                                             " "
                                         }
