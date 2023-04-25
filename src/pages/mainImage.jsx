@@ -7,15 +7,6 @@ import { FiChevronRight } from 'react-icons/fi'
 import { AiOutlineHeart } from 'react-icons/ai'
 import { AiFillHeart } from 'react-icons/ai'
 import { AiOutlineShareAlt } from 'react-icons/ai'
-import { ImCopy } from 'react-icons/im'
-import { AiOutlineMail } from 'react-icons/ai'
-import { FiMessageSquare } from 'react-icons/fi'
-import { MdWhatsapp } from 'react-icons/md'
-import { RiMessengerLine } from 'react-icons/ri'
-import { SlSocialFacebook } from 'react-icons/sl'
-import { TfiTwitter } from 'react-icons/tfi'
-import { ImPinterest2 } from 'react-icons/im'
-import { ImEmbed2 } from 'react-icons/im'
 import { RxCross1 } from 'react-icons/rx'
 import Popup from 'reactjs-popup';
 import { QRCodeSVG } from 'qrcode.react';
@@ -29,7 +20,7 @@ const mainImage = () => {
     const [popupOpen, setPopupOpen] = useState(false);
     const [whatsappClicked, setWhatsappClicked] = useState(false);
     const [messengerClicked, setMessengerClicked] = useState(false);
-    const [url, setURL] = useState(`https://localhost:/${router.pathname}`);
+    const [url, setURL] = useState("");
     const [copied, setCopied] = useState(false);
     const [facebookClicked, setFacebookClicked] = useState(false);
     const [twitterClicked, setTwitterClicked] = useState(false);
